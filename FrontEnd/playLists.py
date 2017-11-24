@@ -61,6 +61,9 @@ class Ui_PlayList(QtGui.QWidget):
         self.pushButton = QtGui.QPushButton(Form)
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.horizontalLayout.addWidget(self.pushButton)
+        self.pushButton_6 = QtGui.QPushButton(Form)
+        self.pushButton_6.setObjectName(_fromUtf8("pushButton_6"))
+        self.horizontalLayout.addWidget(self.pushButton_6)
         self.pushButton_3 = QtGui.QPushButton(Form)
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.horizontalLayout.addWidget(self.pushButton_3)
@@ -72,6 +75,7 @@ class Ui_PlayList(QtGui.QWidget):
 
     @db_session
     def populateAllPlaylists(self):
+        self.listWidget.clear()
         self.playLists = mDB.getAllPlaylists()
         for p in self.playLists:
             self.listWidget.addItem('{:s}{:s}'.format(mDB.StringPrepere(p.name) ,mDB.StringPrepere(':: Track ::' + str(len(p.songs))) ))
@@ -92,4 +96,6 @@ class Ui_PlayList(QtGui.QWidget):
         self.pushButton.setText(_translate("Form", "Play", None))
         self.pushButton_3.setText(_translate("Form", "Back", None))
         self.pushButton_3.clicked.connect(self.close)
+        self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))
+        self.pushButton_6.clicked.connect(self.populateAllPlaylists)
 
