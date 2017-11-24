@@ -83,8 +83,13 @@ def viewArtists():
     return result
 
 @db_session
-def viewBand():
-    result = select(a for a in Band)[:]
+def viewGenres():
+    result = select(g for g in Genre)[:]
+    return result
+
+@db_session
+def viewBands():
+    result = select(b for b in Band)[:]
     return result
 
 @db_session

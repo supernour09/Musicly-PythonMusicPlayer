@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'AddBand.ui'
+# Form implementation generated from reading ui file 'AddGenre.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -27,6 +27,7 @@ class Ui_Form(QtGui.QWidget):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
+
 
 
     def setupUi(self, Form):
@@ -59,7 +60,7 @@ class Ui_Form(QtGui.QWidget):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "Add Band", None))
-        self.label.setText(_translate("Form", "Name:", None))
+        Form.setWindowTitle(_translate("Form", "Add Genre", None))
+        self.label.setText(_translate("Form", "Name :", None))
         self.pushButton.setText(_translate("Form", "Submit", None))
 
