@@ -41,6 +41,14 @@ class Ui_Artisit(QtGui.QWidget):
         self.artists = mDB.viewArtists()
         for a in self.artists:
             self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
+            # QListWidgetItem = QtGui.QListWidgetItem()
+            # QListWidgetItem.setData(5, a.id)
+            # QListWidgetItem.setText('{:s}'.format(mDB.StringPrepere(a.name)))
+            # s = 'i = ' + str(i) + ' mainId = ' + str(a.id) + ' dataId = ' + str(QListWidgetItem.data(5)) + ' Text = ' + QListWidgetItem.text()
+            # print(s)
+            # i += 1
+            # self.listWidget.addItem(QListWidgetItem)
+
 
 
     def setupUi(self, Artisit):

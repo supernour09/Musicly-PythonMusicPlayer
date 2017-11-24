@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d5c1eaad-c7fc-4646-9a3d-bab340682d5d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/ShowAlbum.py" afterPath="$PROJECT_DIR$/FrontEnd/ShowAlbum.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/ShowArtisit.py" afterPath="$PROJECT_DIR$/FrontEnd/ShowArtisit.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,9 +30,21 @@
         <entry file="file://$PROJECT_DIR$/FrontEnd/Musicly.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+              <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
               <folding>
                 <element signature="e#25#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowArtisit.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FrontEnd/ShowArtisit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding>
+                <element signature="e#200#231#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,8 +53,8 @@
       <file leaf-file-name="playLists.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/playLists.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="80" column="136" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="136" />
+            <state relative-caret-position="290">
+              <caret line="84" column="61" lean-forward="false" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -51,7 +63,7 @@
       <file leaf-file-name="ShowAlbum.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/ShowAlbum.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="630">
               <caret line="42" column="79" lean-forward="false" selection-start-line="42" selection-start-column="79" selection-end-line="42" selection-end-column="79" />
               <folding>
                 <element signature="e#199#230#0" expanded="true" />
@@ -63,8 +75,8 @@
       <file leaf-file-name="MusiclyDB.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/MusiclyDB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="75" column="14" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="14" />
+            <state relative-caret-position="442">
+              <caret line="62" column="119" lean-forward="true" selection-start-line="62" selection-start-column="119" selection-end-line="62" selection-end-column="119" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -123,13 +135,13 @@
         <option value="$PROJECT_DIR$/Model/MusiclyDB.py" />
         <option value="$PROJECT_DIR$/FrontEnd/addArtist.py" />
         <option value="$PROJECT_DIR$/FrontEnd/addAlbum" />
-        <option value="$PROJECT_DIR$/FrontEnd/ShowArtisit.py" />
         <option value="$PROJECT_DIR$/FrontEnd/addAlbum.py" />
         <option value="$PROJECT_DIR$/FrontEnd/addBand.py" />
         <option value="$PROJECT_DIR$/FrontEnd/Musicly.py" />
         <option value="$PROJECT_DIR$/FrontEnd/showBand.py" />
         <option value="$PROJECT_DIR$/FrontEnd/playLists.py" />
         <option value="$PROJECT_DIR$/FrontEnd/ShowAlbum.py" />
+        <option value="$PROJECT_DIR$/FrontEnd/ShowArtisit.py" />
       </list>
     </option>
   </component>
@@ -502,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511554406178</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Album fix">
+      <created>1511555184282</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1511555184283</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -551,7 +570,8 @@
     <MESSAGE value="Album Menu" />
     <MESSAGE value="show and add band Menu" />
     <MESSAGE value="Add Refresh Function to Show PlayList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Refresh Function to Show PlayList" />
+    <MESSAGE value="Album fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Album fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -688,7 +708,7 @@
         <state relative-caret-position="578">
           <caret line="55" column="53" lean-forward="true" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="53" />
           <folding>
-            <element signature="e#203#234#0" expanded="true" />
+            <element signature="e#203#234#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -716,7 +736,7 @@
         <state relative-caret-position="475">
           <caret line="92" column="65" lean-forward="true" selection-start-line="91" selection-start-column="8" selection-end-line="92" selection-end-column="65" />
           <folding>
-            <element signature="e#198#229#0" expanded="true" />
+            <element signature="e#198#229#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -884,7 +904,7 @@
         <state relative-caret-position="312">
           <caret line="87" column="68" lean-forward="false" selection-start-line="87" selection-start-column="68" selection-end-line="87" selection-end-column="68" />
           <folding>
-            <element signature="e#203#234#0" expanded="true" />
+            <element signature="e#203#234#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -934,7 +954,7 @@
         <state relative-caret-position="493">
           <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
           <folding>
-            <element signature="e#197#228#0" expanded="true" />
+            <element signature="e#197#228#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -947,37 +967,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/ShowArtisit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="85" column="66" lean-forward="true" selection-start-line="84" selection-start-column="8" selection-end-line="85" selection-end-column="66" />
-          <folding>
-            <element signature="e#200#231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/playLists.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="80" column="136" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="136" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/MusiclyDB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="75" column="14" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/ShowAlbum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="630">
           <caret line="42" column="79" lean-forward="false" selection-start-line="42" selection-start-column="79" selection-end-line="42" selection-end-column="79" />
           <folding>
             <element signature="e#199#230#0" expanded="true" />
@@ -985,10 +977,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/playLists.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="84" column="61" lean-forward="false" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/MusiclyDB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="62" column="119" lean-forward="true" selection-start-line="62" selection-start-column="119" selection-end-line="62" selection-end-column="119" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/ShowArtisit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#200#231#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Musicly.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding>
             <element signature="e#25#35#0" expanded="true" />
           </folding>
