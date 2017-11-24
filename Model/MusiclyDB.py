@@ -16,6 +16,7 @@ class Song(db.Entity):
     genres = Set('Genre')
     lyrics = Optional(str)
     length = Optional(int)
+    address = Optional(str)
 
 
 class Playlist(db.Entity):
@@ -107,14 +108,26 @@ def addPlaylist(pName, pDesc):
     commit()
 
 @db_session
-def addArtist(aName, aBDate, aBand):
-    newArtist = Artist(name=aName, birthDate=aBDate, band=aBand)
+def addArtist(aName, aBDate, BandId):
+    newArtist = Artist(name=aName, birthDate=aBDate, band=Band[BandId])
     commit()
 @db_session
-def addAlbum(aTitle, aBand):
-    newAlbum = Album(title=aTitle, band=aBand)
+def addAlbum(aTitle, BandId):
+    newAlbum = Album(title=aTitle, band=Band[BandId])
     commit()
+
+@db_session
+def addBand(aName):
+    newBand = Band(name=aName)
+    commit()
+    return newBand
+
+
 #################################################### INSERT QUERIES ###################################################
+
+
+
+
 
 def StringPrepere(str):
     while(len(str) <20):
