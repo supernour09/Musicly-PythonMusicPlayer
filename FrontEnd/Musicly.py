@@ -9,7 +9,7 @@ import sys
 # WARNING! All changes made in this file will be lost!
 from FrontEnd import AddSong,ShowAlbum, ShowGenre, playLists
 from PyQt4 import QtCore, QtGui
-from FrontEnd import ShowArtisit
+from FrontEnd import ShowArtisit, showBand
 
 
 try:
@@ -43,6 +43,10 @@ class Ui_Form(QtGui.QWidget):
         self.artisit = ShowArtisit.Ui_Artisit()
         self.artisit.show()
 
+    def openBands(self):
+        self.Band = showBand.Ui_Band()
+        self.Band.show()
+
     def openGenre(self):
         self.genre = ShowGenre.Ui_ShowGenre()
         self.genre.show()
@@ -50,6 +54,7 @@ class Ui_Form(QtGui.QWidget):
     def openAddSong(self):
         self.addSong = AddSong.Ui_AddSong()
         self.addSong.show()
+
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -78,6 +83,9 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton = QtGui.QPushButton(Form)
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.horizontalLayout.addWidget(self.pushButton)
+        self.pushButton_7 = QtGui.QPushButton(Form)
+        self.pushButton_7.setObjectName(_fromUtf8("pushButton_7"))
+        self.horizontalLayout.addWidget(self.pushButton_7)
         self.pushButton_3 = QtGui.QPushButton(Form)
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.horizontalLayout.addWidget(self.pushButton_3)
@@ -102,6 +110,8 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton_3.clicked.connect(self.openGenre)
         self.pushButton_4.setText(_translate("Form", "Add Song", None))
         self.pushButton_4.clicked.connect(self.openAddSong)
+        self.pushButton_7.setText(_translate("Form", "Show Bands", None))
+        self.pushButton_7.clicked.connect(self.openBands)
 
 
 '''

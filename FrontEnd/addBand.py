@@ -60,6 +60,6 @@ class Ui_Form(QtGui.QWidget):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Add Band", None))
-        self.label.setText(_translate("Form", "Name of band :", None))
+        self.label.setText(_translate("Form", "Name:", None))
         self.pushButton.setText(_translate("Form", "Submit", None))
 
