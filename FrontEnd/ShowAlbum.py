@@ -40,7 +40,7 @@ class Ui_ShowAlbum(QtGui.QWidget):
         self.listWidget.clear()
         self.albums = mDB.viewAlbums()
         for a in self.albums:
-            self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.title)))
+            self.listWidget.addItem('{:s}{:s}'.format(mDB.StringPrepere(a.title), mDB.StringPrepere(':: Track ::' + str(len(a.songs)))))
 
 
     def setupUi(self, ShowAlbum):
