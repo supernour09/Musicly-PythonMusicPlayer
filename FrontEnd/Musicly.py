@@ -92,12 +92,12 @@ class Ui_Form(QtGui.QWidget):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Musicly", None))
-        self.label.setText(_translate("Form", "<html><head/><body><p>Welcome to musicly </p><p> made By Nour &amp;&amp; Mazen</p></body></html>", None))
+        self.label.setText(_translate("Form", "<html><head/><body><p>Welcome to Musicly </p><p> Made By Nour &amp;&amp; Mazen</p></body></html>", None))
         self.pushButton_5.setText(_translate("Form", "Show Playlist", None))
         self.pushButton_5.clicked.connect(self.openPlayList)
         self.pushButton_2.setText(_translate("Form", "ٍShow Albums", None))
         self.pushButton_2.clicked.connect(self.openAlbum)
-        self.pushButton.setText(_translate("Form", "Show Bands ", None))
+        self.pushButton.setText(_translate("Form", "Show Artists ", None))
         self.pushButton.clicked.connect(self.openArtisit)
         self.pushButton_3.setText(_translate("Form", "Show Genre", None))
         self.pushButton_3.clicked.connect(self.openGenre)
