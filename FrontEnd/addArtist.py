@@ -87,5 +87,6 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton.setText(_translate("Form", "Submit", None))
 
 
+
     #TODO: Create addArtist Function
 
