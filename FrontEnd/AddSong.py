@@ -7,6 +7,12 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+from pony.orm import *
+from Model import MusiclyDB as mDB
+import tkinter as tk
+from tkinter import filedialog
+
+from pony.orm import db_session
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -26,6 +32,18 @@ class Ui_AddSong(QtGui.QWidget):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
+
+
+    def getFile(self):
+        fileName = QtGui.QFileDialog.getOpenFileName(self, 'OpenFile')
+        self.lineEdit_2.setText(fileName)
+        print(fileName)
+
+    @db_session
+    def addTheSong(self):
+        isExistBand = exists(o for o in mDB.Band if o.name is self.lineEdit_9.text() )
+        print(self.lineEdit_9.text())
+        print(isExistBand)
 
 
     def setupUi(self, AddSong):
@@ -183,6 +201,8 @@ class Ui_AddSong(QtGui.QWidget):
         self.label_7.setText(_translate("AddSong", "Name :", None))
         self.label.setText(_translate("AddSong", "song", None))
         self.pushButton.setText(_translate("AddSong", "Browse", None))
+
+        self.pushButton.clicked.connect(self.getFile)
         self.label_2.setText(_translate("AddSong", "Description:", None))
         self.label_3.setText(_translate("AddSong", "Genre :", None))
         self.label_8.setText(_translate("AddSong", "Featured Artist :", None))
@@ -191,4 +211,4 @@ class Ui_AddSong(QtGui.QWidget):
         self.label_9.setText(_translate("AddSong", "Lyrics", None))
         self.label_4.setText(_translate("AddSong", "Band :", None))
         self.pushButton_2.setText(_translate("AddSong", "Submit", None))
-
+        self.pushButton_2.clicked.connect(self.addTheSong)

@@ -8,7 +8,7 @@
 
 from PyQt4 import QtCore, QtGui
 from Model import MusiclyDB as mDB
-from FrontEnd import addNewPlayList
+from FrontEnd import addNewPlayList , ShowAplaylist
 from Model.MusiclyDB import *
 from pony.orm import *
 
@@ -74,13 +74,13 @@ class Ui_PlayList(QtGui.QWidget):
     def populateAllPlaylists(self):
         self.playLists = mDB.getAllPlaylists()
         for p in self.playLists:
-            print(len(mDB.StringPrepere(p.name)))
-            print(len(mDB.StringPrepere(':: Track ::' + str(len(p.songs)))))
             self.listWidget.addItem('{:s}{:s}'.format(mDB.StringPrepere(p.name) ,mDB.StringPrepere(':: Track ::' + str(len(p.songs))) ))
 
 
     def showCurrPlaylist(self):
-            return self.playLists[self.listWidget.currentRow()]
+            tmp = self.playLists[self.listWidget.currentRow()]
+            self.showPlaylist = ShowAplaylist.Ui_Form(tmp)
+            self.showPlaylist.show()
 
 
     def retranslateUi(self, Form):

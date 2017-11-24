@@ -86,7 +86,6 @@ class Ui_Form(QtGui.QWidget):
         self.horizontalLayout.addWidget(self.pushButton_4)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout_2.addLayout(self.verticalLayout)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
