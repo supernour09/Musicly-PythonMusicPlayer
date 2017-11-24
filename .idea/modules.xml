@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/untitled1.iml" filepath="$PROJECT_DIR$/.idea/untitled1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Musicly.iml" filepath="$PROJECT_DIR$/.idea/Musicly.iml" />
+      <module fileurl="file://C:\Users\Nour Ahmed\PycharmProjects\Musicly\.idea\untitled1.iml" filepath="C:\Users\Nour Ahmed\PycharmProjects\Musicly\.idea\untitled1.iml" />
     </modules>
   </component>
 </project>

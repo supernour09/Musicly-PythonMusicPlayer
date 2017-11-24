@@ -9,9 +9,8 @@ import sys
 # WARNING! All changes made in this file will be lost!
 from FrontEnd import AddSong,ShowAlbum, ShowGenre, playLists
 from PyQt4 import QtCore, QtGui
-from FrontEnd import ShowArtisit 
-from Model import MusiclyDB
-from pony.orm import *
+from FrontEnd import ShowArtisit
+
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8

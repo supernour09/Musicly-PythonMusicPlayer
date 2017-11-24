@@ -7,8 +7,10 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-
+from Model import MusiclyDB as mDB
 from FrontEnd import addNewPlayList
+from Model.MusiclyDB import *
+from pony.orm import *
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -34,6 +36,8 @@ class Ui_PlayList(QtGui.QWidget):
         self.addPlayList = addNewPlayList.Ui_NewPlayList();
         self.addPlayList.show()
 
+
+
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(669, 459)
@@ -41,10 +45,11 @@ class Ui_PlayList(QtGui.QWidget):
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.treeWidget = QtGui.QTreeWidget(Form)
-        self.treeWidget.setObjectName(_fromUtf8("treeWidget"))
-        self.treeWidget.headerItem().setText(0, _fromUtf8("1"))
-        self.verticalLayout.addWidget(self.treeWidget)
+        self.listWidget = QtGui.QListWidget(Form)
+        self.listWidget.setObjectName(_fromUtf8("listWidget"))
+        self.populateAllPlaylists()
+        self.listWidget.show()
+        self.verticalLayout.addWidget(self.listWidget)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButton_5 = QtGui.QPushButton(Form)
@@ -65,11 +70,25 @@ class Ui_PlayList(QtGui.QWidget):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+    @db_session
+    def populateAllPlaylists(self):
+        self.playLists = mDB.getAllPlaylists()
+        for p in self.playLists:
+            print(len(mDB.StringPrepere(p.name)))
+            print(len(mDB.StringPrepere(':: Track ::' + str(len(p.songs)))))
+            self.listWidget.addItem('{:s}{:s}'.format(mDB.StringPrepere(p.name) ,mDB.StringPrepere(':: Track ::' + str(len(p.songs))) ))
+
+
+    def showCurrPlaylist(self):
+            return self.playLists[self.listWidget.currentRow()]
+
+
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Playlists", None))
         self.pushButton_5.setText(_translate("Form", "Add PlayList", None))
         self.pushButton_5.clicked.connect(self.addNewPlayList)
         self.pushButton_2.setText(_translate("Form", "ٍShow PlayList", None))
+        self.pushButton_2.clicked.connect(self.showCurrPlaylist)
         self.pushButton.setText(_translate("Form", "Play", None))
         self.pushButton_3.setText(_translate("Form", "Back", None))
         self.pushButton_3.clicked.connect(self.close)

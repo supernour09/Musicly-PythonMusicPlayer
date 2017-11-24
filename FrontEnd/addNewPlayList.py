@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-
+from Model import MusiclyDB as mDB
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -27,9 +27,9 @@ class Ui_NewPlayList(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
 
-    def addNew(self , name , desc):
-        print(name)
-        print(desc)
+    def addNewPlaylist(self , name , desc):
+        mDB.set_sql_debug(True)
+        mDB.addPlaylist(pName=name, pDesc=desc)
         self.close()
 
     def setupUi(self, NewPlayList):
@@ -85,5 +85,5 @@ class Ui_NewPlayList(QtGui.QWidget):
         self.label.setText(_translate("NewPlayList", "Name:", None))
         self.label_2.setText(_translate("NewPlayList", "Description :", None))
         self.pushButton.setText(_translate("NewPlayList", "Submit", None))
-        self.pushButton.clicked.connect(lambda: self.addNew(self.textEdit.toPlainText(),self.textEdit_2.toPlainText()))
+        self.pushButton.clicked.connect(lambda: self.addNewPlaylist(self.textEdit.toPlainText(),self.textEdit_2.toPlainText()))
 
