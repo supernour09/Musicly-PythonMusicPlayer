@@ -8,7 +8,6 @@
 
 from PyQt4 import QtCore, QtGui
 from pony.orm import db_session
-
 from FrontEnd import addArtist
 from Model import MusiclyDB as mDB
 
