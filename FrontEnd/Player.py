@@ -55,18 +55,16 @@ class Ui_Form(QtGui.QWidget):
         mixer.music.stop()
 
     def showOneSong(self):
-        # self.data = []
-        # self.songList = list(self.songs)
-        # sName = self.songList[self.listWidget.currentRow()].name
-        # sAlbumName = self.songList[self.listWidget.currentRow()].album.title
-        # self.data.append(sName)
-        # self.data.append(sAlbumName)
-
-
         self.tmpList = list(self.songs)
         self.tmpSongData = self.tmpList[self.listWidget.currentRow()]
         self.currSongWindow = showSong.Ui_Form(self.tmpSongData)
         self.currSongWindow.show()
+
+    def deleteOne(self):
+        tmplist = list(self.songs)
+        currID = tmplist[self.listWidget.currentRow()].id
+        mDB.deleteObject(currID, myKey='Song')
+        self.close()
 
 
     def setupUi(self, Form):
@@ -98,6 +96,10 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton_7.setObjectName(_fromUtf8("pushButton_7"))
         self.horizontalLayout.addWidget(self.pushButton_7)
 
+        self.pushButton_8 = QtGui.QPushButton(Form)
+        self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
+        self.horizontalLayout.addWidget(self.pushButton_8)
+
         self.volumeSlider = phonon.Phonon.VolumeSlider(Form)
         self.volumeSlider.setObjectName(_fromUtf8("volumeSlider"))
         self.horizontalLayout.addWidget(self.volumeSlider)
@@ -115,6 +117,12 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton_2.clicked.connect(self.play)
         self.pushButton_3.setText(_translate("Form", "Stop", None))
         self.pushButton_3.clicked.connect(self.pause)
+
         self.pushButton_4.setText(_translate("Form", "Delete", None))
+        self.pushButton_4.clicked.connect(self.deleteOne)
+
         self.pushButton_7.setText(_translate("Form", "show song", None))
         self.pushButton_7.clicked.connect(self.showOneSong)
+
+        self.pushButton_8.setText(_translate("Form", "Remove song", None))
+        #self.pushButton_8.clicked.connect(self.showOneSong)
