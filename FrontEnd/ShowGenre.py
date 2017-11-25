@@ -50,7 +50,6 @@ class Ui_ShowGenre(QtGui.QWidget):
         self.addGenre.show()
 
 
-
     def setupUi(self, ShowGenre):
         ShowGenre.setObjectName(_fromUtf8("ShowGenre"))
         ShowGenre.resize(683, 480)
@@ -92,3 +91,4 @@ class Ui_ShowGenre(QtGui.QWidget):
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))
         self.pushButton_6.clicked.connect(self.populateAllGenres)
+

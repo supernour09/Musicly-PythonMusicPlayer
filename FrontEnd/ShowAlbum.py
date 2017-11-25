@@ -42,6 +42,11 @@ class Ui_ShowAlbum(QtGui.QWidget):
         for a in self.albums:
             self.listWidget.addItem('{:s}{:s}'.format(mDB.StringPrepere(a.title), mDB.StringPrepere(':: Track ::' + str(len(a.songs)))))
 
+    def deleteOne(self):
+        currID = self.albums[self.listWidget.currentRow()].id
+        mDB.deleteObject(currID, myKey='Album')
+        self.populateAllAlbums()
+
 
     def setupUi(self, ShowAlbum):
         ShowAlbum.setObjectName(_fromUtf8("ShowAlbum"))
@@ -66,6 +71,9 @@ class Ui_ShowAlbum(QtGui.QWidget):
         self.pushButton_6 = QtGui.QPushButton(ShowAlbum)
         self.pushButton_6.setObjectName(_fromUtf8("pushButton_6"))
         self.horizontalLayout.addWidget(self.pushButton_6)
+        self.pushButton_8 = QtGui.QPushButton(ShowAlbum)
+        self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
+        self.horizontalLayout.addWidget(self.pushButton_8)
         self.pushButton_3 = QtGui.QPushButton(ShowAlbum)
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.horizontalLayout.addWidget(self.pushButton_3)
@@ -84,3 +92,5 @@ class Ui_ShowAlbum(QtGui.QWidget):
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))
         self.pushButton_6.clicked.connect(self.populateAllAlbums)
+        self.pushButton_8.setText(_translate("ShowGenre", "Delete", None))
+        self.pushButton_8.clicked.connect(self.deleteOne)

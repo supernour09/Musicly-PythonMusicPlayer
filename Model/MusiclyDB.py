@@ -131,7 +131,22 @@ def addSong(aName):
 #################################################### INSERT QUERIES ###################################################
 
 
-
+@db_session
+def deleteObject(id, myKey = None):
+    if myKey == 'Artist':
+        Artist[id].delete()
+        commit()
+    elif myKey == 'Album':
+        Album[id].delete()
+        commit()
+    elif myKey == 'Playlist':
+        Playlist[id].delete()
+        commit()
+    elif myKey == 'Song':
+        Song[id].delete()
+        commit()
+    else:
+        print('Error ... NO Valid Key')
 
 
 def StringPrepere(str):
