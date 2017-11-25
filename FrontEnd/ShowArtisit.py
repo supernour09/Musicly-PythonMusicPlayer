@@ -43,7 +43,7 @@ class Ui_Artisit(QtGui.QWidget):
         self.artists = mDB.viewArtists()
         print(self.artists[0].songs)
         for a in self.artists:
-            self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
+            self.listWidget.addItem('{:s}'.format(a.name))
             # QListWidgetItem = QtGui.QListWidgetItem()
             # QListWidgetItem.setData(5, a.id)
             # QListWidgetItem.setText('{:s}'.format(mDB.StringPrepere(a.name)))
@@ -52,8 +52,9 @@ class Ui_Artisit(QtGui.QWidget):
             # i += 1
             # self.listWidget.addItem(QListWidgetItem)
 
+    @db_session
     def play(self):
-        self.player = list(mDB.Song.select(lambda s: s.artis > 100))
+        self.player = Player.Ui_Form(mDB.Artist.select(lambda s: s.name == self.artists[self.listWidget.currentRow()].name).first().songs)
         self.player.show()
 
     def deleteOne(self):

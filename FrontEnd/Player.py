@@ -41,7 +41,7 @@ class Ui_Form(QtGui.QWidget):
             if indx == 0 :
                 mixer.music.load(a.address)
             else:
-                mixer.music.load(a.address)
+                mixer.music.queue(a.address)
             indx = indx +1
             self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
 

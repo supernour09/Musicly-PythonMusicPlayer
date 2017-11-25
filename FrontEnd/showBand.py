@@ -42,8 +42,9 @@ class Ui_Band(QtGui.QWidget):
         for a in self.bands:
             self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
 
+    @db_session
     def play(self):
-        self.player = Player.Ui_Form(self.bands[self.listWidget.currentRow()].songs)
+        self.player = Player.Ui_Form(mDB.Band.select(lambda s: s.name == self.bands[self.listWidget.currentRow()].name).first().songs)
         self.player.show()
 
 

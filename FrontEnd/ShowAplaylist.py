@@ -8,6 +8,8 @@
 
 from PyQt4 import QtCore, QtGui
 from pony.orm import db_session
+from FrontEnd import allSongs
+from Model import MusiclyDB as mDB
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -22,16 +24,21 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-
+@db_session
 class Ui_Form(QtGui.QWidget):
 
-    def __init__(self,playlist):
-        self.playlist = playlist
+    def __init__(self,playlistId):
+        self.playlistId = playlistId
+        self.playlist = mDB.viewOnePlaylistId(self.playlistId)
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.populateAllSongs()
 
+    def ShowAllSong(self):
 
+        self.ShowAllSongs = allSongs.Ui_Form(self.playlistId)
+
+        self.ShowAllSongs.show()
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -73,18 +80,17 @@ class Ui_Form(QtGui.QWidget):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-    @db_session
+
     def populateAllSongs(self):
-        self.Songs = self.playlist.songs
-        print(len(self.Songs))
-        '''for p in self.playLists:
-            self.listWidget.addItem(
-                '{:s}{:s}'.format(mDB.StringPrepere(p.name), mDB.StringPrepere(':: Track ::' + str(len(p.songs)))))'''
+
+        for a in self.playlist.first().songs:
+            self.listWidget.addItem('{:s}'.format(a.name))
 
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Show Playlist", None))
-        self.label.setText(_translate("Form", "Name : " + self.playlist.name, None))
-        self.label_2.setText(_translate("Form", "Description : " + self.playlist.description, None))
+        self.label.setText(_translate("Form", "Name : " + self.playlist.first().name, None))
+        self.label_2.setText(_translate("Form", "Description : " + self.playlist.first().description, None))
         self.pushButton.setText(_translate("Form", "Add Song", None))
+        self.pushButton.clicked.connect(self.ShowAllSong)
 

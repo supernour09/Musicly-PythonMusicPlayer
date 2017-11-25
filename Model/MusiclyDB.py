@@ -23,7 +23,7 @@ class Playlist(db.Entity):
     id = PrimaryKey(int, auto=True)
     name = Required(str)
     description = Optional(str)
-    songs = Set(Song)
+    songs = Set(Song,lazy=False)
 
 
 class Band(db.Entity):
@@ -65,6 +65,12 @@ def getAllPlaylists():
 def viewOnePlaylist(playListName):
     result = Playlist.select(lambda p: p.name == playListName)
     return result
+
+@db_session
+def viewOnePlaylistId(playListId):
+    result = Playlist.select(lambda p: p.id == playListId)
+    return result
+
 
 @db_session
 def viewAlbums():
@@ -128,6 +134,11 @@ def addSong(aName):
     newSong = Song()
     commit()
     return newSong
+@db_session
+def addSongToPlaylist(song , playlistId):
+    Playlist[playlistId].songs.add(Song[song])
+    commit()
+
 #################################################### INSERT QUERIES ###################################################
 
 

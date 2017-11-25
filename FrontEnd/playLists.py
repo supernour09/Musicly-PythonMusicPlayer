@@ -25,7 +25,7 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-
+@db_session
 class Ui_PlayList(QtGui.QWidget):
 
     def __init__(self):
@@ -89,13 +89,13 @@ class Ui_PlayList(QtGui.QWidget):
 
 
     def showCurrPlaylist(self):
-            tmp = self.playLists[self.listWidget.currentRow()]
-            self.showPlaylist = ShowAplaylist.Ui_Form(tmp)
+            self.tmpId = self.playLists[self.listWidget.currentRow()].id
+            self.showPlaylist = ShowAplaylist.Ui_Form( self.tmpId)
             self.showPlaylist.show()
 
-
+    @db_session
     def play(self):
-        self.player = Player.Ui_Form(self.playLists[self.listWidget.currentRow()].songs)
+        self.player = Player.Ui_Form(mDB.Playlist.select(lambda s: s.id ==  self.playLists[self.listWidget.currentRow()].id).first().songs)
         self.player.show()
 
     def retranslateUi(self, Form):
