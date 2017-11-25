@@ -10,6 +10,7 @@ from PyQt4 import QtCore, QtGui
 from PyQt4 import phonon
 from Model import MusiclyDB as mDB
 from pygame import mixer
+from FrontEnd import showSong
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -19,30 +20,32 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
+
 class Ui_Form(QtGui.QWidget):
-    def __init__(self,songs):
+    def __init__(self, songs):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.songs = songs
         mixer.init()
         self.populateAllSongs()
 
-
     def populateAllSongs(self):
         self.listWidget.clear()
-        indx = 0;
+        indx = 0
         for a in self.songs:
-            if indx == 0 :
+            if indx == 0:
                 mixer.music.load(a.address)
             else:
                 mixer.music.load(a.address)
-            indx = indx +1
+            indx = indx + 1
             self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
 
     def play(self):
@@ -50,6 +53,21 @@ class Ui_Form(QtGui.QWidget):
 
     def pause(self):
         mixer.music.stop()
+
+    def showOneSong(self):
+        # self.data = []
+        # self.songList = list(self.songs)
+        # sName = self.songList[self.listWidget.currentRow()].name
+        # sAlbumName = self.songList[self.listWidget.currentRow()].album.title
+        # self.data.append(sName)
+        # self.data.append(sAlbumName)
+
+
+        self.tmpList = list(self.songs)
+        self.tmpSongData = self.tmpList[self.listWidget.currentRow()]
+        self.currSongWindow = showSong.Ui_Form(self.tmpSongData)
+        self.currSongWindow.show()
+
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -75,6 +93,11 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton_4 = QtGui.QPushButton(Form)
         self.pushButton_4.setObjectName(_fromUtf8("pushButton_4"))
         self.horizontalLayout.addWidget(self.pushButton_4)
+
+        self.pushButton_7 = QtGui.QPushButton(Form)
+        self.pushButton_7.setObjectName(_fromUtf8("pushButton_7"))
+        self.horizontalLayout.addWidget(self.pushButton_7)
+
         self.volumeSlider = phonon.Phonon.VolumeSlider(Form)
         self.volumeSlider.setObjectName(_fromUtf8("volumeSlider"))
         self.horizontalLayout.addWidget(self.volumeSlider)
@@ -84,6 +107,7 @@ class Ui_Form(QtGui.QWidget):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Player", None))
         self.pushButton.setText(_translate("Form", "Shuffle", None))
@@ -92,5 +116,5 @@ class Ui_Form(QtGui.QWidget):
         self.pushButton_3.setText(_translate("Form", "Stop", None))
         self.pushButton_3.clicked.connect(self.pause)
         self.pushButton_4.setText(_translate("Form", "Delete", None))
-
-
+        self.pushButton_7.setText(_translate("Form", "show song", None))
+        self.pushButton_7.clicked.connect(self.showOneSong)
