@@ -37,7 +37,7 @@ class Band(db.Entity):
 class Artist(db.Entity):
     id = PrimaryKey(int, auto=True)
     name = Required(str,unique=True)
-    birthDate = Optional(date)
+    birthDate = Optional(str)
     band = Optional(Band)
     songs = Set(Song)
 

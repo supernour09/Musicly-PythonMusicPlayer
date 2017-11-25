@@ -8,7 +8,7 @@
 
 from PyQt4 import QtCore, QtGui
 from pony.orm import db_session
-from FrontEnd import addBand
+from FrontEnd import addBand,Player
 from Model import MusiclyDB as mDB
 
 try:
@@ -41,6 +41,10 @@ class Ui_Band(QtGui.QWidget):
         self.bands = mDB.viewBands()
         for a in self.bands:
             self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
+
+    def play(self):
+        self.player = Player.Ui_Form(self.bands[self.listWidget.currentRow()].songs)
+        self.player.show()
 
 
     def setupUi(self, Band):
@@ -80,6 +84,7 @@ class Ui_Band(QtGui.QWidget):
         self.pushButton_5.setText(_translate("Band", "Add Band", None))
         self.pushButton_5.clicked.connect(self.openAddBand)
         self.pushButton.setText(_translate("Band", "Play", None))
+        self.pushButton.clicked.connect(self.play)
         self.pushButton_3.setText(_translate("Band", "Back", None))
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))

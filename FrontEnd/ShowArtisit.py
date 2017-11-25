@@ -7,8 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-from pony.orm import db_session
-from FrontEnd import addArtist
+from pony.orm import *
+from FrontEnd import addArtist , Player
 from Model import MusiclyDB as mDB
 
 try:
@@ -39,17 +39,14 @@ class Ui_Artisit(QtGui.QWidget):
     def populateAllArtists(self):
         self.listWidget.clear()
         self.artists = mDB.viewArtists()
+        print(self.artists[0].songs)
         for a in self.artists:
             self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a.name)))
-            # QListWidgetItem = QtGui.QListWidgetItem()
-            # QListWidgetItem.setData(5, a.id)
-            # QListWidgetItem.setText('{:s}'.format(mDB.StringPrepere(a.name)))
-            # s = 'i = ' + str(i) + ' mainId = ' + str(a.id) + ' dataId = ' + str(QListWidgetItem.data(5)) + ' Text = ' + QListWidgetItem.text()
-            # print(s)
-            # i += 1
-            # self.listWidget.addItem(QListWidgetItem)
 
-
+    # def play(self):
+    #
+    #     self.player = list(mDB.Song.select(lambda s: s.artis > 100))
+    #     self.player.show()
 
     def setupUi(self, Artisit):
         Artisit.setObjectName(_fromUtf8("Artisit"))
@@ -83,11 +80,15 @@ class Ui_Artisit(QtGui.QWidget):
         self.retranslateUi(Artisit)
         QtCore.QMetaObject.connectSlotsByName(Artisit)
 
+
+
+
     def retranslateUi(self, Artisit):
         Artisit.setWindowTitle(_translate("Artisit", "Artists", None))
         self.pushButton_5.setText(_translate("Artisit", "Add Artist", None))
         self.pushButton_5.clicked.connect(self.openAddArtist)
         self.pushButton.setText(_translate("Artisit", "Play", None))
+        self.pushButton.clicked.connect(self.play)
         self.pushButton_3.setText(_translate("Artisit", "Back", None))
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))

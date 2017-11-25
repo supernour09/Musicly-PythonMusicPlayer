@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+from pony.orm import *
+from Model import MusiclyDB as mDB
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -28,6 +30,10 @@ class Ui_Form(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
 
+    @db_session
+    def addBand(self):
+        mDB.addBand(aName=self.lineEdit.text())
+        self.close()
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -62,4 +68,4 @@ class Ui_Form(QtGui.QWidget):
         Form.setWindowTitle(_translate("Form", "Add Band", None))
         self.label.setText(_translate("Form", "Name:", None))
         self.pushButton.setText(_translate("Form", "Submit", None))
-
+        self.pushButton.clicked.connect(self.addBand)

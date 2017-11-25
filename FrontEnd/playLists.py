@@ -8,7 +8,7 @@
 
 from PyQt4 import QtCore, QtGui
 from Model import MusiclyDB as mDB
-from FrontEnd import addNewPlayList , ShowAplaylist
+from FrontEnd import addNewPlayList , ShowAplaylist,Player
 from Model.MusiclyDB import *
 from pony.orm import *
 
@@ -87,6 +87,10 @@ class Ui_PlayList(QtGui.QWidget):
             self.showPlaylist.show()
 
 
+    def play(self):
+        self.player = Player.Ui_Form(self.playLists[self.listWidget.currentRow()].songs)
+        self.player.show()
+
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Playlists", None))
         self.pushButton_5.setText(_translate("Form", "Add PlayList", None))
@@ -94,6 +98,7 @@ class Ui_PlayList(QtGui.QWidget):
         self.pushButton_2.setText(_translate("Form", "ٍShow PlayList", None))
         self.pushButton_2.clicked.connect(self.showCurrPlaylist)
         self.pushButton.setText(_translate("Form", "Play", None))
+        self.pushButton.clicked.connect(self.play)
         self.pushButton_3.setText(_translate("Form", "Back", None))
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))

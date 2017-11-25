@@ -9,7 +9,7 @@
 from PyQt4 import QtCore, QtGui
 from pony.orm import db_session
 from Model import MusiclyDB as mDB
-from FrontEnd import addGenre
+from FrontEnd import addGenre , Player
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -34,14 +34,14 @@ class Ui_ShowGenre(QtGui.QWidget):
     def populateAllGenres(self):
         self.listWidget.clear()
         self.allSong = mDB.viewSong()
-        dict = {}
+        self.dict = {}
         for i in self.allSong:
-            if i.genres in dict:
-                dict[i.genres].append(i)
+            if i.genres in self.dict:
+                self.dict[i.genres].append(i)
             else:
-                dict[i.genres] = [i]
-        for a in dict:
-            self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a)))
+                self.dict[i.genres] = [i]
+        for a in self.dict:
+            self.listWidget.addItem('{:s}'.format(a))
 
 
 
@@ -49,6 +49,12 @@ class Ui_ShowGenre(QtGui.QWidget):
         self.addGenre = addGenre.Ui_Form()
         self.addGenre.show()
 
+
+    def play(self):
+        lis = list(self.dict)
+        print(lis)
+        self.player = Player.Ui_Form(self.dict[lis[self.listWidget.currentRow()]])
+        self.player.show()
 
 
     def setupUi(self, ShowGenre):
@@ -65,9 +71,6 @@ class Ui_ShowGenre(QtGui.QWidget):
         self.listWidget.show()
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.pushButton_5 = QtGui.QPushButton(ShowGenre)
-        self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
-        self.horizontalLayout.addWidget(self.pushButton_5)
         self.pushButton = QtGui.QPushButton(ShowGenre)
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.horizontalLayout.addWidget(self.pushButton)
@@ -85,9 +88,8 @@ class Ui_ShowGenre(QtGui.QWidget):
 
     def retranslateUi(self, ShowGenre):
         ShowGenre.setWindowTitle(_translate("ShowGenre", "Genre", None))
-        self.pushButton_5.setText(_translate("ShowGenre", "Add Genre", None))
-        self.pushButton_5.clicked.connect(self.openAddGenre)
         self.pushButton.setText(_translate("ShowGenre", "Play", None))
+        self.pushButton.clicked.connect(self.play)
         self.pushButton_3.setText(_translate("ShowGenre", "Back", None))
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))
