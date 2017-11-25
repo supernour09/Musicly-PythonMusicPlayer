@@ -9,11 +9,11 @@ class Song(db.Entity):
     id = PrimaryKey(int, auto=True)
     playlists = Set('Playlist')
     name = Required(str)
-    band = Optional('Band')
-    artists = Set('Artist')
+    band = Optional('Band') # asm el main artist
+    artists = Set('Artist') #dol el featured artist
     album = Optional('Album')
     releaseDate = Optional(str)
-    genres = Set('Genre')
+    genres = Optional(str)
     lyrics = Optional(str)
     length = Optional(int)
     address = Optional(str)
@@ -49,11 +49,6 @@ class Album(db.Entity):
     band = Required(Band)
 
 
-class Genre(db.Entity):
-    id = PrimaryKey(int, auto=True)
-    name = Required(str)
-    songs = Set(Song)
-
 #set_sql_debug(True)
 # SQLite
 db.bind(provider='sqlite', filename='musicly.sqlite', create_db=True)
@@ -82,17 +77,17 @@ def viewArtists():
     return result
 
 @db_session
-def viewGenres():
-    result = select(g for g in Genre)[:]
-    return result
-
-@db_session
 def viewBands():
     result = select(b for b in Band)[:]
     return result
 
 @db_session
-def viewSong(songName):
+def viewSong():
+    result = select(b for b in Song)[:]
+    return result
+
+@db_session
+def viewASong(songName):
     result = Song.select(lambda s: s.name == songName)
     return result
 

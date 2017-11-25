@@ -44,21 +44,14 @@ class Ui_AddSong(QtGui.QWidget):
         sName = self.lineEdit.text()
         sAddress = self.lineEdit_2.text()
         sArtist = self.lineEdit_10.text()
+        sArtistFt = self.lineEdit_5.text()
         sBand = self.lineEdit_9.text()
         sAlbum = self.lineEdit_6.text()
         sDesc = self.lineEdit_3.text()
         sGenre = self.lineEdit_4.text()
         sLyrics = self.lineEdit_8.text()
         sDate = self.lineEdit_7.text()
-        song = mDB.Song(name = sName ,address = sAddress , lyrics =sLyrics ,releaseDate=sDate )
-        song.genres.add(sGenre)
-        if sArtist is not None:
-            isExistArtisit = select(c for c in mDB.Artist if c.name is sArtist)
-            if len(isExistArtisit) == 0:
-                newArtisit = mDB.addArtist(aName=sArtist)
-                newArtisit.songs.add(song)
-            else:
-                isExistArtisit.first().songs.add(song)
+        song = mDB.Song(name = sName ,address = sAddress , lyrics =sLyrics ,releaseDate=sDate,genres=sGenre )
         tmpBandId = 0
         if sBand is not None:
             isExistBand = select(c for c in mDB.Band if c.name is sBand)
@@ -69,6 +62,27 @@ class Ui_AddSong(QtGui.QWidget):
             else:
                 isExistBand.first().songs.add(song)
                 tmpBandId = isExistBand.first().id
+
+        if sArtist is not None:
+            isExistArtisit = select(c for c in mDB.Artist if c.name is sArtist)
+            if len(isExistArtisit) == 0:
+                newArtisit = mDB.addArtist(aName=sArtist)
+                newArtisit.songs.add(song)
+                mDB.Band[tmpBandId].artists.add(newArtisit)
+            else:
+                isExistArtisit.first().songs.add(song)
+                mDB.Band[tmpBandId].artists.add(isExistArtisit)
+
+        if sArtistFt is not None:
+            isExistArtisitFt = select(c for c in mDB.Artist if c.name is sArtist)
+            if len(isExistArtisitFt) == 0:
+                newArtisit = mDB.addArtist(aName=sArtistFt)
+                newArtisit.songs.add(song)
+                song.artists.add(isExistArtisitFt)
+            else:
+                isExistArtisitFt.first().songs.add(song)
+                song.artists.add(isExistArtisitFt)
+
 
         if sAlbum is not None:
             isExistAlbum = select(c for c in mDB.Album if c.title is sAlbum)

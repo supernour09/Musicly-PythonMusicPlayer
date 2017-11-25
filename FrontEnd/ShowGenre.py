@@ -33,20 +33,21 @@ class Ui_ShowGenre(QtGui.QWidget):
     @db_session
     def populateAllGenres(self):
         self.listWidget.clear()
-        self.genres = mDB.viewGenres()
-        list = []
-        for g in self.genres:
-            if g.name not in list:
-                list.append(g.name)
-                self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(g.name)))
+        self.allSong = mDB.viewSong()
+        dict = {}
+        for i in self.allSong:
+            if i.genres in dict:
+                dict[i.genres].append(i)
+            else:
+                dict[i.genres] = [i]
+        for a in dict:
+            self.listWidget.addItem('{:s}'.format(mDB.StringPrepere(a)))
+
 
 
     def openAddGenre(self):
-        self.addGenre = addGenre.Ui_Form();
+        self.addGenre = addGenre.Ui_Form()
         self.addGenre.show()
-
-
-    #TODO: create addGenre Function
 
 
 
