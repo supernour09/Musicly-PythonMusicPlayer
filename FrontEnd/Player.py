@@ -65,7 +65,7 @@ class Ui_Form(QtGui.QWidget):
 
         self.tmpList = list(self.songs)
         self.tmpSongData = self.tmpList[self.listWidget.currentRow()]
-        self.currSongWindow = showSong.Ui_Form(self.tmpSongData)
+        self.currSongWindow = showSong.Ui_Form(self.tmpSongData.id)
         self.currSongWindow.show()
 
 

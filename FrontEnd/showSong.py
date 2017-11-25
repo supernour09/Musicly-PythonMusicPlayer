@@ -36,6 +36,7 @@ class Ui_Form(QtGui.QWidget):
     def showSong(self):
         # sName = self.currSong[0]
         # slyrics = self.currSong[1]
+        self.currSong = mDB.viewASongId(self.currSong)
         sName = self.currSong.name
         sAlbumName = self.currSong.album.title
         sDate = self.currSong.releaseDate
