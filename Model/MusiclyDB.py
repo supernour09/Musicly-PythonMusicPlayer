@@ -9,10 +9,10 @@ class Song(db.Entity):
     id = PrimaryKey(int, auto=True)
     playlists = Set('Playlist')
     name = Required(str)
-    band = Required('Band')
+    band = Optional('Band')
     artists = Set('Artist')
     album = Optional('Album')
-    releaseDate = Optional(date)
+    releaseDate = Optional(str)
     genres = Set('Genre')
     lyrics = Optional(str)
     length = Optional(int)
@@ -36,7 +36,7 @@ class Band(db.Entity):
 
 class Artist(db.Entity):
     id = PrimaryKey(int, auto=True)
-    name = Required(str)
+    name = Required(str,unique=True)
     birthDate = Optional(date)
     band = Optional(Band)
     songs = Set(Song)
@@ -47,7 +47,6 @@ class Album(db.Entity):
     title = Required(str)
     songs = Set(Song)
     band = Required(Band)
-    numberOfSongs = Required(int)
 
 
 class Genre(db.Entity):
@@ -106,15 +105,22 @@ def viewSong(songName):
 def addPlaylist(pName, pDesc):
     newPlaylist = Playlist(name=pName, description=pDesc)
     commit()
+    return newPlaylist
 
 @db_session
-def addArtist(aName, aBDate, BandId):
-    newArtist = Artist(name=aName, birthDate=aBDate, band=Band[BandId])
+def addArtist(aName, aBDate="", BandId=""):
+    if(BandId == ""):
+        newArtist = Artist(name=aName)
+    else:
+        newArtist = Artist(name=aName, birthDate=aBDate, band=Band[BandId])
     commit()
+    return newArtist
+
 @db_session
-def addAlbum(aTitle, BandId):
+def addAlbum(aTitle, BandId ):
     newAlbum = Album(title=aTitle, band=Band[BandId])
     commit()
+    return newAlbum
 
 @db_session
 def addBand(aName):
@@ -122,7 +128,11 @@ def addBand(aName):
     commit()
     return newBand
 
-
+@db_session
+def addSong(aName):
+    newSong = Song()
+    commit()
+    return newSong
 #################################################### INSERT QUERIES ###################################################
 
 

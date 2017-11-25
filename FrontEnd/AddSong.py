@@ -41,9 +41,46 @@ class Ui_AddSong(QtGui.QWidget):
 
     @db_session
     def addTheSong(self):
-        isExistBand = exists(o for o in mDB.Band if o.name is self.lineEdit_9.text() )
-        print(self.lineEdit_9.text())
-        print(isExistBand)
+        sName = self.lineEdit.text()
+        sAddress = self.lineEdit_2.text()
+        sArtist = self.lineEdit_10.text()
+        sBand = self.lineEdit_9.text()
+        sAlbum = self.lineEdit_6.text()
+        sDesc = self.lineEdit_3.text()
+        sGenre = self.lineEdit_4.text()
+        sLyrics = self.lineEdit_8.text()
+        sDate = self.lineEdit_7.text()
+        song = mDB.Song(name = sName ,address = sAddress , lyrics =sLyrics ,releaseDate=sDate )
+        song.genres.add(sGenre)
+        if sArtist is not None:
+            isExistArtisit = select(c for c in mDB.Artist if c.name is sArtist)
+            if len(isExistArtisit) == 0:
+                newArtisit = mDB.addArtist(aName=sArtist)
+                newArtisit.songs.add(song)
+            else:
+                isExistArtisit.first().songs.add(song)
+        tmpBandId = 0
+        if sBand is not None:
+            isExistBand = select(c for c in mDB.Band if c.name is sBand)
+            if len(isExistBand) == 0:
+                newBand = mDB.addBand(aName=sBand)
+                newBand.songs.add(song)
+                tmpBandId = newBand.id
+            else:
+                isExistBand.first().songs.add(song)
+                tmpBandId = isExistBand.first().id
+
+        if sAlbum is not None:
+            isExistAlbum = select(c for c in mDB.Album if c.title is sAlbum)
+            if len(isExistAlbum) == 0:
+                newAlbum = mDB.addAlbum(aTitle=sAlbum , BandId = tmpBandId )
+                newAlbum.songs.add(song)
+            else:
+                isExistAlbum.first().songs.add(song)
+
+
+
+        self.close()
 
 
     def setupUi(self, AddSong):
@@ -54,9 +91,7 @@ class Ui_AddSong(QtGui.QWidget):
         font.setBold(True)
         font.setWeight(75)
         AddSong.setFont(font)
-        self.verticalLayout_3 = QtGui.QVBoxLayout(AddSong)
-        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
-        self.verticalLayout_2 = QtGui.QVBoxLayout()
+        self.verticalLayout_2 = QtGui.QVBoxLayout(AddSong)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -118,6 +153,19 @@ class Ui_AddSong(QtGui.QWidget):
         self.lineEdit_4.setObjectName(_fromUtf8("lineEdit_4"))
         self.horizontalLayout_3.addWidget(self.lineEdit_4)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.horizontalLayout_10 = QtGui.QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(_fromUtf8("horizontalLayout_10"))
+        self.label_10 = QtGui.QLabel(AddSong)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_10.setFont(font)
+        self.label_10.setTextFormat(QtCore.Qt.RichText)
+        self.label_10.setObjectName(_fromUtf8("label_10"))
+        self.horizontalLayout_10.addWidget(self.label_10)
+        self.lineEdit_10 = QtGui.QLineEdit(AddSong)
+        self.lineEdit_10.setObjectName(_fromUtf8("lineEdit_10"))
+        self.horizontalLayout_10.addWidget(self.lineEdit_10)
+        self.verticalLayout.addLayout(self.horizontalLayout_10)
         self.horizontalLayout_8 = QtGui.QHBoxLayout()
         self.horizontalLayout_8.setObjectName(_fromUtf8("horizontalLayout_8"))
         self.label_8 = QtGui.QLabel(AddSong)
@@ -183,15 +231,10 @@ class Ui_AddSong(QtGui.QWidget):
         self.lineEdit_9.setObjectName(_fromUtf8("lineEdit_9"))
         self.horizontalLayout_4.addWidget(self.lineEdit_9)
         self.verticalLayout.addLayout(self.horizontalLayout_4)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
         self.pushButton_2 = QtGui.QPushButton(AddSong)
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
-        self.verticalLayout_2.addWidget(self.pushButton_2)
-        self.verticalLayout_3.addLayout(self.verticalLayout_2)
-        self.pushButton_2.raise_()
-        self.label_4.raise_()
-        self.label_8.raise_()
-        self.lineEdit_9.raise_()
+        self.verticalLayout.addWidget(self.pushButton_2)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
 
         self.retranslateUi(AddSong)
         QtCore.QMetaObject.connectSlotsByName(AddSong)
@@ -201,14 +244,14 @@ class Ui_AddSong(QtGui.QWidget):
         self.label_7.setText(_translate("AddSong", "Name :", None))
         self.label.setText(_translate("AddSong", "song", None))
         self.pushButton.setText(_translate("AddSong", "Browse", None))
-
-        self.pushButton.clicked.connect(self.getFile)
         self.label_2.setText(_translate("AddSong", "Description:", None))
         self.label_3.setText(_translate("AddSong", "Genre :", None))
+        self.label_10.setText(_translate("AddSong", "Artist :", None))
         self.label_8.setText(_translate("AddSong", "Featured Artist :", None))
         self.label_5.setText(_translate("AddSong", "Album :", None))
         self.label_6.setText(_translate("AddSong", "Relase Date :", None))
         self.label_9.setText(_translate("AddSong", "Lyrics", None))
         self.label_4.setText(_translate("AddSong", "Band :", None))
         self.pushButton_2.setText(_translate("AddSong", "Submit", None))
+        self.pushButton.clicked.connect(self.getFile)
         self.pushButton_2.clicked.connect(self.addTheSong)
