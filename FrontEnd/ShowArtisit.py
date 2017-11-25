@@ -52,10 +52,9 @@ class Ui_Artisit(QtGui.QWidget):
             # i += 1
             # self.listWidget.addItem(QListWidgetItem)
 
-    # def play(self):
-    #
-    #     self.player = list(mDB.Song.select(lambda s: s.artis > 100))
-    #     self.player.show()
+    def play(self):
+        self.player = list(mDB.Song.select(lambda s: s.artis > 100))
+        self.player.show()
 
     def deleteOne(self):
         currID = self.artists[self.listWidget.currentRow()].id
