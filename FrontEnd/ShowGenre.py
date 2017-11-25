@@ -94,3 +94,4 @@ class Ui_ShowGenre(QtGui.QWidget):
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))
         self.pushButton_6.clicked.connect(self.populateAllGenres)
+

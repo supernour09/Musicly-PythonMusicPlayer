@@ -37,6 +37,10 @@ class Ui_PlayList(QtGui.QWidget):
         self.addPlayList.show()
 
 
+    def deleteOne(self):
+        currID = self.playLists[self.listWidget.currentRow()].id
+        mDB.deleteObject(currID, myKey='Playlist')
+        self.populateAllPlaylists()
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -64,6 +68,9 @@ class Ui_PlayList(QtGui.QWidget):
         self.pushButton_6 = QtGui.QPushButton(Form)
         self.pushButton_6.setObjectName(_fromUtf8("pushButton_6"))
         self.horizontalLayout.addWidget(self.pushButton_6)
+        self.pushButton_8 = QtGui.QPushButton(Form)
+        self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
+        self.horizontalLayout.addWidget(self.pushButton_8)
         self.pushButton_3 = QtGui.QPushButton(Form)
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.horizontalLayout.addWidget(self.pushButton_3)
@@ -103,4 +110,6 @@ class Ui_PlayList(QtGui.QWidget):
         self.pushButton_3.clicked.connect(self.close)
         self.pushButton_6.setText(_translate("ShowGenre", "Refresh", None))
         self.pushButton_6.clicked.connect(self.populateAllPlaylists)
+        self.pushButton_8.setText(_translate("ShowGenre", "Delete", None))
+        self.pushButton_8.clicked.connect(self.deleteOne)
 
