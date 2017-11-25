@@ -97,6 +97,11 @@ def viewASong(songName):
     result = Song.select(lambda s: s.name == songName)
     return result
 
+@db_session
+def viewASongId(songId):
+    result = Song.select(lambda s: s.id == songId).first()
+    return result
+
 #################################################### SELECT QUERIES ###################################################
 
 
